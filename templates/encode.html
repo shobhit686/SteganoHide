@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block main %}
+<div class="px-4 py-5 my-5 text-center">
+    <h1 class="display-5 fw-bold text-body-emphasis">Encoder</h1>
+    <div class="col-lg-4 mx-auto">
+      <p class="lead mb-4">Kindly provide the inputs</p>
+      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+        <form class="w-100" method="post" enctype="multipart/form-data" onsubmit="showmodal()">
+          {% csrf_token %}
+            <div class="row mb-3">
+              <label for="message" class="col-sm-3 col-form-label fw-bold">Message : </label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="message" name="message" required>
+              </div>
+            </div>
+            <div class="row mb-3">
+                <label for="image" class="col-sm-3 col-form-label fw-bold">Image : </label>
+                <div class="col-sm-9">
+                    <input class="form-control" type="file" id="image" name="image" required>
+                    <small class="fw-bold">(Allowed : png, jpg, jpeg)</small>
+                </div>
+              </div>
+            <button type="submit" class="btn btn-primary">Encode</button>
+          </form>
+
+      </div>
+    </div>
+  </div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Thanks</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Your encoded image will download automatically.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  function showmodal(){
+    let modal = bootstrap.Modal.getOrCreateInstance(document.getElementById('exampleModal'))
+  modal.show();
+  }
+  
+</script>
+
+{% endblock %}

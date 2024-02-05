@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block main %}
+<div class="px-4 py-5 my-5 text-center">
+  <h1 class="display-5 fw-bold text-body-emphasis">Decoder</h1>
+  <div class="col-lg-4 mx-auto">
+    <p class="lead mb-4">Kindly provide the inputs</p>
+    <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+      <form class="w-100" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="row mb-3">
+          <label for="image" class="col-sm-3 col-form-label fw-bold">Image : </label>
+          <div class="col-sm-9">
+            <input class="form-control" type="file" id="image" name="image">
+            <small class="fw-bold">(Allowed : jpg, jpeg)</small>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Decode</button>
+      </form>
+
+    </div>
+{% if result %}
+    <div class="div card shadow p-2 mt-3">
+      <p class="fw-bold">Your message :</p>
+      {{result}}
+    </div>
+    {% endif %}
+
+  </div>
+</div>
+{% endblock %}
